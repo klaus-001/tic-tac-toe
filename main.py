@@ -18,13 +18,13 @@ class TicTacToe:
 		# self.window.resizable(False, False)
 		self.window.configure(bg='black')
 
-		self.label = Label(self.window, text=self.player + ' turn', font=('consolas', 40), 
-					 	   bg='black', fg='white')
+		self.label = Label(self.window, text=self.player + ' turn', font=('consolas', 40),
+					 bg='black', fg='white')
 		self.label.pack(side='top')
 
 		self.reset_button = Button(self.window, text='restart', font=('consolas', 20),
-							 	   bg='black', fg='white', activebackground='black', activeforeground='black',
-							 	   command=self.new_game)
+							bg='black', fg='white', activebackground='black', activeforeground='black',
+							command=self.new_game)
 		self.reset_button.pack(side='top')
 
 		self.frame = Frame(self.window)
@@ -32,9 +32,9 @@ class TicTacToe:
 
 		for row in range(3):
 			for column in range(3):
-				self.buttons[row][column] = Button(self.frame, text='', font=('consolas', 40), bg='black', fg='white',
-									   			   activeforeground='black', activebackground='black', width=5, 
-									   			   height=2, command=lambda row=row, column=column: self.next_turn(row, column))
+				self.buttons[row][column] = Button(self.frame, text='', font=('consolas', 40), bg='black', fg='white', 
+									   		activeforeground='black', activebackground='black', width=5,
+											height=2, command=lambda row=row, column=column: self.next_turn(row, column))
 				self.buttons[row][column].grid(row=row, column=column)
 
 	def next_turn(self, row, column):
