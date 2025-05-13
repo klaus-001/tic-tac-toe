@@ -5,8 +5,9 @@ class TicTacToe:
 	def __init__(self, window):
 		self.window = window
 
-		self.players = ['X', 'o']
+		self.players = ['👾', '👽']
 		self.player = random.choice(self.players)
+
 		self.buttons = [[0, 0, 0], 
 				  		[0, 0, 0],
 						[0, 0, 0]]
@@ -15,16 +16,11 @@ class TicTacToe:
 
 	def create_widgets(self):
 		self.window.title('Tic-Tac-Toe')
-		# self.window.resizable(False, False)
-		self.window.configure(bg='black')
 
-		self.label = Label(self.window, text=self.player + ' turn', font=('consolas', 40),
-					 	   bg='black', fg='white')
+		self.label = Label(self.window, text=f'{self.player} turn', font=('consolas', 40))
 		self.label.pack(side='top')
 
-		self.reset_button = Button(self.window, text='restart', font=('consolas', 20),
-								   bg='black', fg='white', activebackground='black', activeforeground='black',
-								   command=self.new_game)
+		self.reset_button = Button(self.window, text='restart', font=('consolas', 20), command=self.new_game)
 		self.reset_button.pack(side='top')
 
 		self.frame = Frame(self.window)
@@ -32,9 +28,8 @@ class TicTacToe:
 
 		for row in range(3):
 			for column in range(3):
-				self.buttons[row][column] = Button(self.frame, text='', font=('consolas', 40), bg='black', fg='white', 
-									   			   activeforeground='black', activebackground='black', width=5,
-												   height=2, command=lambda row=row, column=column: self.next_turn(row, column))
+				self.buttons[row][column] = Button(self.frame, text='', font=('consolas', 40), width=5, height=2,
+									   			   command=lambda row=row, column=column: self.next_turn(row, column))
 				self.buttons[row][column].grid(row=row, column=column)
 
 	def next_turn(self, row, column):
@@ -45,10 +40,10 @@ class TicTacToe:
 				
 				if self.check_winner() is False:
 					self.player = self.players[1]
-					self.label.config(text=(self.players[1] + ' turn'))
+					self.label.config(text=f'{self.players[1]} turn')
 					
 				elif self.check_winner() is True:
-					self.label.config(text=(self.players[0] + ' wins'))
+					self.label.config(text=f'{self.players[0]} wins')
 					
 				elif self.check_winner() == 'Tie':
 					self.label.config(text='Tie!')
@@ -58,10 +53,10 @@ class TicTacToe:
 				
 				if self.check_winner() is False:
 					self.player = self.players[0]
-					self.label.config(text=(self.players[0] + ' turn'))
+					self.label.config(text=f'{self.players[0]} turn')
 					
 				elif self.check_winner() is True:
-					self.label.config(text=(self.players[1] + ' wins'))
+					self.label.config(text=f'{self.players[1]} wins')
 					
 				elif self.check_winner() == 'Tie':
 					self.label.config(text='Tie!')
@@ -126,11 +121,11 @@ class TicTacToe:
 		# Reset playing field
 		self.player = random.choice(self.players)
 		
-		self.label.config(text=self.player + ' turn')
+		self.label.config(text=f'{self.player} turn')
 		
 		for row in range(3):
 			for column in range(3):
-				self.buttons[row][column].config(text='', bg='black')
+				self.buttons[row][column].config(text='', bg='#F0F0F0')
 
 if __name__ == '__main__':	
 	window = Tk()
